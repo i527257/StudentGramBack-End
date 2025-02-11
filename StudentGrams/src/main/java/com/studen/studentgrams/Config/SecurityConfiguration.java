@@ -15,13 +15,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-
-    private final AuthenticationProvider authenticationprovider;
+    private final AuthenticationProvider authenticationProvider;
     private final JWTAuthenticationFilter jwtAuthFilter;
 
-    @Autowired  // Manually specify constructor if needed
-    public SecurityConfiguration(AuthenticationProvider authenticationprovider, JWTAuthenticationFilter jwtAuthFilter) {
-        this.authenticationprovider = authenticationprovider;
+    @Autowired
+    public SecurityConfiguration(AuthenticationProvider authenticationProvider, JWTAuthenticationFilter jwtAuthFilter) {
+        this.authenticationProvider = authenticationProvider;
         this.jwtAuthFilter = jwtAuthFilter;
     }
 
@@ -30,13 +29,18 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/auth").permitAll()
+                        .requestMatchers("/api/v1/auth/register", "/api/v1/auth/authenticate").permitAll()
+                        .requestMatchers("/api/v1/User/**").permitAll()
+                        .requestMatchers("/api/v1/post/**").permitAll()
+                        .requestMatchers("/api/v1/comment/**").permitAll()
+                        .requestMatchers("/api/v1/favorites/**").permitAll()
+                        .requestMatchers("/ws/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                .authenticationProvider(authenticationprovider)
+                .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

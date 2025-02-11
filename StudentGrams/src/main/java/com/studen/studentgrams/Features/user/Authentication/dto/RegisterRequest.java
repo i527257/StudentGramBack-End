@@ -10,6 +10,6 @@ public record RegisterRequest(String firstName,
                               String password,
                               String displayname,
                               boolean admin,
-                              byte[] profilePicturel) {
+                              String profilePicture) {
 
 }

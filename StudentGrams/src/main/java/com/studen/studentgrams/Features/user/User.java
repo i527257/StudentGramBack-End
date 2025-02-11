@@ -1,5 +1,6 @@
 package com.studen.studentgrams.Features.user;
 
+import com.studen.studentgrams.Features.Favorite.Favorite;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class User implements UserDetails {
             generator = "User_Sequence"
     )
     private Long id;
+
     private String firstname;
     private String lastname;
     @Column(unique = true)
@@ -34,13 +36,18 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String displayname;
     private Boolean admin;
+
+    @Lob
     private byte[] profilePicture;
 
-    public User() {
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Favorite> favorites;
 
+    public User() {
     }
 
-    public User(Long id, String firstname, String lastname, String email, String password, String displayname, Boolean admin, byte[] profilePicture) {
+    // Constructor with favorites initialization
+    public User(Long id, String firstname, String lastname, String email, String password, String displayname, Boolean admin, byte[] profilePicture, List<Favorite> favorites) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -48,8 +55,8 @@ public class User implements UserDetails {
         this.displayname = displayname;
         this.admin = admin;
         this.profilePicture = profilePicture;
+        this.favorites = favorites;
     }
-
 
     public User(String firstname, String lastname, String email, String password, String displayname, Boolean admin, byte[] profilePicture) {
         this.firstname = firstname;
