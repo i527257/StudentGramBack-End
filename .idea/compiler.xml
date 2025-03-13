@@ -10,6 +10,11 @@
         <module name="StudentGrams" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="StudentGramBack-End.app" target="23" />
+      <module name="StudentGramBack-End.app.main" target="23" />
+      <module name="StudentGramBack-End.app.test" target="23" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
