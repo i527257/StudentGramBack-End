@@ -27,9 +27,10 @@ jobs:
           java-version: '23'
           cache: 'maven'
 
-      - name: Build & Test
+      - name: Build, Test & Package
         run: |
           mvn -f StudentGrams/pom.xml clean verify
+          mvn -f StudentGrams/pom.xml package -DskipTests
 
       - name: Run Lint Checks
         run: |
