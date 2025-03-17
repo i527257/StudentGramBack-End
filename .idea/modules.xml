@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/StudentGramBack-End.iml" filepath="$PROJECT_DIR$/.idea/StudentGramBack-End.iml" />
       <module fileurl="file://$PROJECT_DIR$/StudentGrams/StudentGrams.iml" filepath="$PROJECT_DIR$/StudentGrams/StudentGrams.iml" />
     </modules>
   </component>
