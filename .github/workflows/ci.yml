@@ -29,9 +29,9 @@ jobs:
 
       - name: Build & Test
         run: |
-          mvn clean verify
+          mvn -f StudentGrams/pom.xml clean verify
 
       - name: Run Lint Checks
         run: |
-          mvn checkstyle:check
-          mvn pmd:check
+          mvn -f StudentGrams/pom.xml checkstyle:check
+          mvn -f StudentGrams/pom.xml pmd:check
