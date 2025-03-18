@@ -3,13 +3,9 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - develop
-      - main
       - "*"
   pull_request:
     branches:
-      - develop
-      - main
       - "*"
 
 jobs:
@@ -27,12 +23,17 @@ jobs:
           java-version: '23'
           cache: 'maven'
 
-      - name: Build, Test & Package
+      - name: Build & Test
         run: |
-          mvn -f StudentGrams/pom.xml clean verify
-          mvn -f StudentGrams/pom.xml package -DskipTests
+          mvn -f StudentGrams/pom.xml clean package
+          mvn -f StudentGrams/pom.xml test
 
       - name: Run Lint Checks
         run: |
           mvn -f StudentGrams/pom.xml checkstyle:check
           mvn -f StudentGrams/pom.xml pmd:check
+
+      - name: SonarCloud Analysis
+        run: mvn sonar:sonar -Dsonar.projectKey=StudentGrams
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
