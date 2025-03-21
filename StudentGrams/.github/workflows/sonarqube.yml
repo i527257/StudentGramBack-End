@@ -16,6 +16,9 @@ jobs:
           distribution: 'temurin'
           java-version: '23'
 
+      - name: list files in repository
+        run: ls -R
+
       - name: Build Project
         run: mvn clean install -DskipTests
         working-directory: "C:\Users\yassi\OneDrive\Bureaublad\Semester3\RepoEigenProject\StudentGramBack-End"
