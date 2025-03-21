@@ -21,7 +21,7 @@ jobs:
 
       - name: Build Project
         run: mvn clean install -DskipTests
-        working-directory: "C:\Users\yassi\OneDrive\Bureaublad\Semester3\RepoEigenProject\StudentGramBack-End"
+        working-directory: "StudentGrams"
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
