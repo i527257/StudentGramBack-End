@@ -65,7 +65,7 @@ public class Post {
         this.createdAt = createdAt;
     }
 
-    public Long getUserId() {
-        return user.getId();
-    }
+//    public Long getUserId() {
+//        return user.getId();
+//    }
 }

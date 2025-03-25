@@ -69,6 +69,7 @@ public class PostService {
                 savedPost.getId(),
                 savedPost.getImage(),
                 savedPost.getDescription()
+
         );
     }
 

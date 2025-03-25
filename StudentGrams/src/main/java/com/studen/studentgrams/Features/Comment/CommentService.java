@@ -44,14 +44,15 @@ public class CommentService {
 
         return comments.stream()
                 .map(comment -> {
-                    String base64ProfilePicture = Base64.getEncoder().encodeToString(comment.getUser().getProfilePicture());
+                    String base64ProfilePicture = Base64.getEncoder()
+                            .encodeToString(comment.getUser()
+                                    .getProfilePicture());
                     return new CommentResponse(
                             comment.getId(),
                             comment.getUser().getDisplayname(),
                             base64ProfilePicture,
                             comment.getMessage(),
                             comment.getUser().getId());
-
                 })
                 .collect(Collectors.toList());
 
