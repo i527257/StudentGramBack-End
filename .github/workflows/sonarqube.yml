@@ -22,14 +22,9 @@ jobs:
       - name: List files (for debug)
         run: ls -R
 
-      - name: Build Project
-        run: mvn clean install -DskipTests
+      - name: Run SonarQube Scan
+        run: mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -DskipTests
         working-directory: StudentGrams
-
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        with:
-          projectBaseDir: StudentGrams
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: 'https://sonarcloud.io/'
+          SONAR_HOST_URL: https://sonarcloud.io/
