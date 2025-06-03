@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  studentgrams-frontend:
+    image: studentgrams-frontend_docker:latest
+    container_name: studentgrams-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    restart: unless-stopped
+
+  dashboard:
+    image: dashboard_docker:latest
+    container_name: dashboard
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+    restart: unless-stopped
+
+  backend:
+    image: studentgram-backend_docker:latest
+    container_name: studentgram-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+    restart: unless-stopped
